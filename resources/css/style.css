@@ -1,0 +1,83 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f7fafc;
+    /* Warna background abu-abu muda */
+}
+
+
+/* Gaya kustom untuk input field dan button */
+
+.form-input {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    background-color: #fff;
+    color: #4a5568;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    /* Warna biru saat focus */
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.form-button {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 8px;
+    background-color: #3b82f6;
+    /* Warna biru */
+    color: #fff;
+    font-weight: 600;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.form-button:hover {
+    background-color: #2563eb;
+    /* Warna biru lebih gelap saat hover */
+}
+
+
+/* Gaya untuk form register */
+
+.form-step {
+    transition: opacity 0.3s ease;
+}
+
+.form-step-hidden {
+    display: none;
+}
+
+
+/* Gaya untuk searchable dropdown */
+
+.searchable-dropdown-container {
+    position: relative;
+}
+
+.searchable-dropdown-list {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.searchable-dropdown-list-item {
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.searchable-dropdown-list-item:hover {
+    background-color: #f3f4f6;
+}
