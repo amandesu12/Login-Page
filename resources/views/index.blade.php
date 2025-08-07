@@ -12,9 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     @vite(['resources/css/style.css'])
     @vite(['resources/js/script.js'])
-    <style>
-        
-    </style>
 </head>
 <body class="flex items-center justify-center min-h-screen p-4 md:p-8">
 
@@ -22,9 +19,10 @@
     <div id="main-container" class="bg-white rounded-3xl shadow-xl w-full max-w-5xl flex flex-col md:flex-row overflow-hidden">
         
         <!-- Kolom Kiri: Ilustrasi 3D -->
-        <div id="illustration-column" class="hidden md:block md:w-1/2 p-8 bg-gray-50 items-center justify-center">
-            <!-- Placeholder untuk ilustrasi. Kamu bisa ganti dengan gambar atau SVG asli. -->
-            <img src="https://placehold.co/500x500/f3f4f6/6b7280?text=3D+Illustration" alt="Ilustrasi 3D" class="w-full h-full object-contain">
+        <div id="illustration-column" class="hidden md:flex md:w-1/2 p-0 bg-gray-50 items-center justify-center">
+            <div class="flex items-center justify-center h-full w-full">
+            <video src="{{ asset('videos/Animasi_Element.mp4') }}" autoplay loop muted class="w-full h-full object-cover"></video>
+            </div>
         </div>
 
         <!-- Kolom Kanan: Form Login dan Register -->
