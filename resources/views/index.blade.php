@@ -50,7 +50,7 @@
                         </div>
                         <a href="#" class="text-blue-600 hover:text-blue-500">Lupa Password?</a>
                     </div>
-                    <button type="submit" class="form-button">Login</button>
+                    <a href="#"><button type="submit" class="form-button">Login</button></a>
                 </form>
                 
                 <div class="text-center mt-6">
