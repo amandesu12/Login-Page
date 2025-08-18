@@ -1,0 +1,90 @@
+body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F5F6FA;
+        }
+
+        /* Custom color palette */
+        .color-primary { background-color: #004A9F; }
+        .color-primary-text { color: #004A9F; }
+        .color-secondary { background-color: #F5F6FA; }
+        .color-text-dark { color: #2C2C2C; }
+        .color-text-gray { color: #A0AEC0; }
+        .color-accent-green { background-color: #4CAF50; }
+        .color-accent-red { background-color: #EF4444; }
+        .color-accent-blue-light { background-color: #4299E1; }
+        .color-accent-yellow { background-color: #FBBF24; }
+        
+        /* Apply a subtle, smooth transition to all elements */
+        * {
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Custom scrollbar-hide utility for a cleaner look */
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Updated style for the filter buttons */
+        .filter-button {
+            padding: 0.5rem 0.8rem;
+            border-radius: 0.5rem; /* Reduced border-radius for a more subtle curve */
+            font-weight: 500;
+            cursor: pointer;
+            background-color: #e2e8f0;
+            color: #4A5568;
+            transition: background-color 0.2s, color 0.2s, opacity 0.2s;
+        }
+        .filter-button:hover {
+            opacity: 0.8;
+        }
+        .filter-button.active {
+            background-color: #004A9F;
+            color: white;
+            /* Removed box-shadow and transform for a cleaner, flatter look */
+            opacity: 1;
+        }
+        
+        /* Style untuk container filter agar responsif */
+        .filter-container {
+            display: flex;
+            flex-wrap: nowrap; /* Mencegah wrap pada item */
+            overflow-x: auto; /* Memungkinkan scroll horizontal jika perlu */
+            -webkit-overflow-scrolling: touch; /* Meningkatkan pengalaman scroll di iOS */
+            gap: 0.25rem; /* Jarak antar tombol */
+            justify-content: flex-start;
+            padding: 0.25rem;
+        }
+        @media (min-width: 640px) {
+            .filter-container {
+                flex-wrap: nowrap;
+                gap: 0.5rem;
+                justify-content: center;
+            }
+        }
+        
+        /* Updated style for the dropdown filter */
+        .filter-dropdown {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem; /* Reduced border-radius to match buttons */
+            background-color: #e2e8f0;
+            border: 1px solid #cbd5e0;
+            font-weight: 500;
+            cursor: pointer;
+            appearance: none; /* Hide default arrow */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%234A5568'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.7rem center;
+            background-size: 1rem;
+            transition: all 0.2s ease-in-out;
+            outline: none; /* Removed the default focus outline */
+        }
+        .filter-dropdown:focus {
+            outline: none;
+            box-shadow: none; /* Ensured no box shadow is added on focus */
+            border-color: #cbd5e0; /* Kept border color consistent on focus */
+        }
+
+        /* Chart container styles */
+        .chart-container {
+            position: relative;
+            height: 250px; /* Consistent height for all charts */
+        }

@@ -1,0 +1,132 @@
+/* Gaya font kustom */
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Palet warna kustom yang lembut */
+        :root {
+            --color-primary: #004A9F; /* Biru gelap untuk tombol utama */
+            --color-bg-soft: #F5F6FA; /* Latar belakang yang sangat terang */
+            --color-text-dark: #2C2C2C; /* Teks gelap */
+            --color-text-gray: #718096; /* Teks abu-abu untuk deskripsi */
+            --color-border-light: #E2E8F0; /* Garis tepi yang lembut */
+            --color-card-bg: #FFFFFF; /* Latar belakang kartu */
+
+            /* Warna badge untuk status/prioritas */
+            --status-bg-completed: #D6F6E5; /* Hijau muda */
+            --status-text-completed: #2F855A; /* Hijau tua */
+            --status-bg-in-progress: #EBF8FF; /* Biru muda */
+            --status-text-in-progress: #3182CE; /* Biru tua */
+            --status-bg-to-do: #E2E8F0; /* Abu-abu muda */
+            --status-text-to-do: #4A5568; /* Abu-abu tua */
+            --status-bg-overdue: #FFEBEB; /* Merah muda lembut */
+            --status-text-overdue: #E53E3E; /* Merah tua lembut */
+            
+            --priority-bg-high: #FEEBCB; /* Jingga muda */
+            --priority-text-high: #D69E2E; /* Jingga tua */
+            --priority-bg-medium: #E2E8F0; /* Abu-abu muda */
+            --priority-text-medium: #4A5568; /* Abu-abu tua */
+            --priority-bg-low: #D1F6F6; /* Teal muda */
+            --priority-text-low: #38B2AC; /* Teal tua */
+
+            /* Warna untuk progress bar deadline */
+            --deadline-green: #D6F6E5; /* Hijau muda untuk waktu yang tersisa */
+            --deadline-orange: #FEEBCB; /* Oranye muda untuk mendekati deadline */
+            --deadline-red: #FFEBEB; /* Merah muda untuk overdue */
+            --deadline-fill-green: #2F855A;
+            --deadline-fill-orange: #D69E2E;
+            --deadline-fill-red: #E53E3E;
+        }
+
+        .bg-soft { background-color: var(--color-bg-soft); }
+        .text-primary { color: var(--color-primary); }
+        .text-dark { color: var(--color-text-dark); }
+        .text-gray { color: var(--color-text-gray); }
+        .border-light { border-color: var(--color-border-light); }
+        .card-bg { background-color: var(--color-card-bg); }
+
+        /* Gaya untuk badge status */
+        .badge-status-completed { background-color: var(--status-bg-completed); color: var(--status-text-completed); }
+        .badge-status-in-progress { background-color: var(--status-bg-in-progress); color: var(--status-text-in-progress); }
+        .badge-status-to-do { background-color: var(--status-bg-to-do); color: var(--status-text-to-do); }
+        .badge-status-overdue { background-color: var(--status-bg-overdue); color: var(--status-text-overdue); }
+
+        /* Gaya untuk badge prioritas */
+        .badge-priority-high { background-color: var(--priority-bg-high); color: var(--priority-text-high); }
+        .badge-priority-medium { background-color: var(--priority-bg-medium); color: var(--priority-text-medium); }
+        .badge-priority-low { background-color: var(--priority-bg-low); color: var(--priority-text-low); }
+
+        /* Gaya tombol filter yang diperbarui untuk tampilan yang lebih bersih */
+        .filter-btn {
+            padding: 0.5rem 1rem; /* px-4 py-2 */
+            border-radius: 9999px; /* rounded-full */
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 600; /* font-semibold */
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke; /* transition-colors */
+            transition-duration: 0.2s; /* duration-200 */
+        }
+        .filter-btn.active {
+            color: var(--color-primary);
+            background-color: var(--color-card-bg); /* Latar belakang putih terang */
+            border: 2px solid transparent; /* Garis tepi transparan untuk mencegah layout shift */
+            box-shadow: none; /* Menghilangkan bayangan */
+        }
+        .filter-btn:not(.active) {
+            color: var(--color-text-dark);
+            background-color: transparent;
+            border: 2px solid transparent;
+        }
+        .filter-btn:not(.active):hover {
+            background-color: var(--color-border-light);
+        }
+
+        /* Untuk membuat tabel responsif pada layar kecil */
+        .table-container {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Menghilangkan garis outline pada fokus */
+        *:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        /* Gaya untuk popup profil saat di-hover */
+        .profile-popup {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 10;
+        }
+        
+        /* Gaya untuk panel slide-in/slide-out dari sisi kanan */
+        .slide-panel {
+            z-index: 50; /* Pastikan panel berada di atas konten lain */
+            transition: transform 0.5s ease-in-out;
+            transform: translateX(100%);
+        }
+        .slide-panel.open {
+            transform: translateX(0);
+        }
+
+        /* Gaya untuk latar belakang buram saat panel terbuka */
+        .backdrop {
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 40; /* Di bawah panel, di atas konten utama */
+        }
+
+        /* Style for category header with improved readability */
+        .category-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            cursor: pointer;
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .category-header:hover {
+            background-color: #f2f2f2;
+        }
