@@ -19,6 +19,10 @@ Route::get('/taskpage', function () {
 });
 
 
-Route::get('/reports', function () {
-    return view('Reports'); 
+Route::get('/reportsusr', function () {
+    return view('ReportsU'); 
+});
+
+Route::get('/dashboarda', function () {
+    return view('DashboardAdmin'); 
 });
