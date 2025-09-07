@@ -1,0 +1,35 @@
+  body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f5f7fa;
+  }
+  
+  .card {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .pagination-link.active {
+      background-color: #2563eb;
+      color: white;
+      border-color: #2563eb;
+  }
+  
+  .transition-transform-hover:hover {
+      transform: translateY(-2px);
+      transition: transform 0.2s ease-in-out;
+  }
+  
+  .dropdown-menu {
+      display: none;
+  }
+  
+  .dropdown-menu.show {
+      display: block;
+  }
+  
+  .fixed-pagination {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+  }

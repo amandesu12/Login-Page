@@ -1,0 +1,42 @@
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+main {
+    overflow-y: auto;
+    height: 100vh;
+}
+
+
+/* Style for the tooltip */
+
+.tooltip {
+    position: fixed;
+    /* Use fixed to position relative to viewport */
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 1rem;
+    z-index: 50;
+    display: none;
+    transition: opacity 0.2s, transform 0.2s;
+    opacity: 0;
+    white-space: nowrap;
+    pointer-events: none;
+    /* Allows mouse to pass through to the element below */
+}
+
+
+/* Style for the tooltip arrow */
+
+.tooltip-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid white;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+}

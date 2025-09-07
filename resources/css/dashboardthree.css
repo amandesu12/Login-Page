@@ -1,0 +1,41 @@
+ @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+ body {
+     font-family: 'Inter', sans-serif;
+     background-color: #f3f4f6;
+ }
+ 
+ .card {
+     border-radius: 0.75rem;
+     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+ }
+ 
+ .card:hover {
+     transform: translateY(-3px);
+     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+ }
+ 
+ .text-blue-600 {
+     color: #2563EB;
+ }
+ 
+ .text-yellow-600 {
+     color: #D97706;
+ }
+ 
+ .text-green-600 {
+     color: #059669;
+ }
+ 
+ .text-red-600 {
+     color: #DC2626;
+ }
+ /* Custom tooltip style for charts */
+ 
+ .chartjs-tooltip {
+     background: #1f2937 !important;
+     border-radius: 0.5rem !important;
+     padding: 0.5rem 0.75rem !important;
+     color: white !important;
+     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+ }

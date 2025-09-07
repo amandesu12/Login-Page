@@ -26,3 +26,40 @@ Route::get('/reportsusr', function () {
 Route::get('/dashboarda', function () {
     return view('DashboardAdmin'); 
 });
+
+Route::get('/project', function () {
+    return view('Project'); 
+});
+
+Route::get('/adminadduser', function () {
+    return view('Admin_Dashboard_AddU'); 
+});
+
+Route::get('/dashthree', function () {
+    return view('DashboardThree'); 
+});
+
+Route::get('/present', function () {
+    return view('Admin_Present'); 
+});
+
+Route::get('/aplikasi', function () {
+    return view('Admin_Aplikasi'); 
+});
+
+Route::get('/adu', function () {
+    return view('ADU'); 
+});
+
+Route::get('/adp', function () {
+    return view('ADP'); 
+});
+
+Route::get('/av', function () {
+    return view('AV'); 
+});
+
+
+Route::get('/dpu', function () {
+    return view('DPU'); 
+});
