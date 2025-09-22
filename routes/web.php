@@ -63,3 +63,19 @@ Route::get('/av', function () {
 Route::get('/dpu', function () {
     return view('DPU'); 
 });
+
+Route::get('/unit', function () {
+    return view('Admin_Unit'); 
+});
+
+Route::get('/edit', function () {
+    return view('Edit_Profile'); 
+});
+
+Route::get('/cuti', function () {
+    return view('Pengajuan_Cuti'); 
+});
+
+Route::get('/akses', function () {
+    return view('Manajemen_Akses'); 
+});

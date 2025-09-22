@@ -197,13 +197,6 @@
             margin-top: 0.75rem;
         }
 
-        .stat-card .progress-bar-fill {
-            height: 100%;
-            border-radius: 9999px;
-            background-color: var(--primary-color);
-            transition: width 0.5s ease-in-out;
-        }
-
         .stat-card .icon-check {
             position: absolute;
             top: 0.75rem;
@@ -220,9 +213,18 @@
             height: 10px;
             margin-top: 0.5rem;
         }
+        .stat-card .progress-bar-fill {
+            height: 100%;
+            border-radius: 9999px;
+            background-color: var(--primary-color);
+            transition: width 0.5s ease-in-out;
+        }
 
         .stat-card.progress-card .progress-bar-fill {
             background-color: var(--info-color);
+        }
+        .performance-stat-item .progress-bar-fill {
+            background-color: var(--primary-color);
         }
 
         .tabs {
@@ -430,10 +432,6 @@
         .performance-stat-item .progress-bar-container {
             flex-grow: 1;
         }
-
-        .performance-stat-item .progress-bar-fill {
-            background-color: var(--primary-color);
-        }
         
         @media (max-width: 1024px) {
             .dashboard-grid {
@@ -503,10 +501,6 @@
                     <i class="fas fa-search"></i>
                     <input type="text" placeholder="Search for anything...">
                 </div>
-                <div class="grid-view">
-                    <button><i class="fas fa-th-large"></i></button>
-                    <button><i class="fas fa-list"></i></button>
-                </div>
             </header>
 
             <div class="dashboard-grid">
@@ -516,8 +510,8 @@
                             <div class="user-info">
                                 <img src="https://placehold.co/60x60/2e71f1/ffffff?text=SD" alt="User Avatar">
                                 <div class="details">
-                                    <h3>Sari Dewi</h3>
-                                    <p>sari.dewi@company.com</p>
+                                    <h3>Fadil UY</h3>
+                                    <p>Fadil31@company.com</p>
                                     <p class="badge">UI/UX Designer</p>
                                 </div>
                             </div>
@@ -724,9 +718,9 @@
                         </div>
                         <div class="stat-card progress-card">
                             <h4>Progress</h4>
-                            <div class="value">70%</div>
+                            <div class="value">4/15</div>
                             <div class="progress-bar">
-                                <div class="progress-bar-fill" style="width: 70%;"></div>
+                                <div class="progress-bar-fill" style="width: 70%; background: linear-gradient(to right, #1f42cb, #2b53f6, #089ccd);"></div>
                             </div>
                         </div>
                     </div>

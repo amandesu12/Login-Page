@@ -37,10 +37,6 @@
                     <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16a6.471 6.471 0 0 0 3.73-1.28l.27.28v.79l5 4.99L20.49 19l-4.99-5zM9.5 14C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
                 </svg>
             </div>
-            <div class="flex items-center space-x-4">
-                <span class="text-sm font-semibold text-gray-700 hidden md:block">Michael Smith</span>
-                <img class="w-8 h-8 rounded-full" src="https://placehold.co/40x40/60a5fa/ffffff?text=MS" alt="Michael Smith">
-            </div>
         </header>
 
         <!-- Page Content -->
@@ -74,7 +70,7 @@
                 </div>
 
                 <!-- Empty State -->
-                <div id="emptyState" class="hidden flex items-center justify-center h-64">
+                <div id="emptyState" class="invisible flex items-center justify-center h-64">
                     <p class="text-gray-500 text-lg">Tidak ada vendor yang ditemukan.</p>
                 </div>
 
@@ -105,6 +101,26 @@
                 <div class="bg-white rounded-3xl shadow-lg p-6 max-w-lg mx-auto">
                     <form id="vendorForm">
                         <input type="hidden" id="vendorId">
+                        
+                         <!-- Dropdown for Jenis Perusahaan -->
+                        <div class="mb-6">
+                            <label for="companyType" class="block text-gray-700 text-sm font-bold mb-2">Jenis Perusahaan</label>
+                            <select id="companyType" name="companyType" class="shadow-sm border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                <option value="">Pilih Jenis Perusahaan</option>
+                                <option value="Lokal">Lokal</option>
+                                <option value="Penanam Modal Asing">Penanam Modal Asing</option>
+                                <option value="BUMN">BUMN</option>
+                            </select>
+                        </div>
+
+                        <!-- Dropdown for Bentuk Perusahaan (initially hidden) -->
+                        <div id="companyFormContainer" class="mb-6 hidden">
+                            <label for="companyForm" class="block text-gray-700 text-sm font-bold mb-2">Bentuk Perusahaan</label>
+                            <select id="companyForm" name="companyForm" class="shadow-sm border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                <!-- Options will be dynamically added by JavaScript -->
+                            </select>
+                        </div>
+                        
                         <div class="mb-6">
                             <label for="vendorName" class="block text-gray-700 text-sm font-bold mb-2">Nama Vendor</label>
                             <input type="text" id="vendorName" name="vendorName" class="shadow-sm appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan nama vendor" required>
@@ -134,10 +150,13 @@
 <script>
     // --- In-memory data for simulation ---
     let vendors = [
-        { id: '1', name: 'Vendor ABC', logoUrl: 'https://placehold.co/96x96/60a5fa/1f2937?text=ABC', createdAt: new Date().toISOString(), updatedAt: null, priority: 'High', unit: 'Unit A' },
-        { id: '2', name: 'Vendor XYZ', logoUrl: 'https://placehold.co/96x96/60a5fa/1f2937?text=XYZ', createdAt: new Date().toISOString(), updatedAt: null, priority: 'Medium', unit: 'Unit B' }
+        { id: '1', name: 'Vendor ABC', logoUrl: 'https://placehold.co/96x96/60a5fa/1f2937?text=ABC', createdAt: new Date().toISOString(), updatedAt: null, priority: 'High', unit: 'Unit A', companyType: 'Lokal', companyForm: 'PT' },
+        { id: '2', name: 'Vendor XYZ', logoUrl: 'https://placehold.co/96x96/60a5fa/1f2937?text=XYZ', createdAt: new Date().toISOString(), updatedAt: null, priority: 'Medium', unit: 'Unit B', companyType: 'Lokal', companyForm: 'CV' },
+        { id: '3', name: 'Telkom Indonesia', logoUrl: 'https://placehold.co/96x96/60a5fa/1f2937?text=TKM', createdAt: new Date().toISOString(), updatedAt: null, priority: 'High', unit: 'Unit A', companyType: 'BUMN', companyForm: 'BUMN' },
+        { id: '4', name: 'Perusahaan Modal Asing Terbatas', logoUrl: 'https://placehold.co/96x96/60a5fa/1f2937?text=PMA', createdAt: new Date().toISOString(), updatedAt: null, priority: 'Low', unit: 'Unit A', companyType: 'Penanam Modal Asing', companyForm: 'PMA' },
+        { id: '5', name: 'Kantor Perwakilan Perusahaan Asing', logoUrl: 'https://placehold.co/96x96/60a5fa/1f2937?text=KPPA', createdAt: new Date().toISOString(), updatedAt: null, priority: 'High', unit: 'Unit B', companyType: 'Lokal', companyForm: 'KPPA' },
     ];
-    let nextId = 3;
+    let nextId = 6;
 
     // UI elements
     const dashboardPage = document.getElementById('dashboardPage');
@@ -154,6 +173,16 @@
     const searchInput = document.getElementById('searchInput');
     const priorityFilter = document.getElementById('priorityFilter');
     const unitFilter = document.getElementById('unitFilter');
+    const companyTypeDropdown = document.getElementById('companyType');
+    const companyFormContainer = document.getElementById('companyFormContainer');
+    const companyFormDropdown = document.getElementById('companyForm');
+
+    // Data for dynamic dropdowns
+    const companyForms = {
+        'Lokal': ['PT', 'CV', 'Firma', 'Perseorangan', 'PMDN', 'KPPA'],
+        'Penanam Modal Asing': ['PMA', 'Perusahaan Cabang'],
+        'BUMN': ['BUMN', 'BMUD']
+    };
 
     // State for filtering
     let currentFilters = {
@@ -172,13 +201,31 @@
         } else {
             emptyState.classList.add('hidden');
             vendorsToRender.forEach(vendor => {
+                let prefix = '';
+                const allowedPrefixes = ['PT', 'CV', 'BUMN', 'PMA', 'KPPA', 'PMDN', 'BMUD'];
+                if (allowedPrefixes.includes(vendor.companyForm)) {
+                    prefix = `${vendor.companyForm} `;
+                }
+
+                let displayName = `${prefix}${vendor.name}`;
+                let fontSizeClass = 'text-xl';
+                const maxLength = 25;
+                const fontChangeLength = 18;
+
+                if (displayName.length > maxLength) {
+                    displayName = `${prefix}${vendor.name.substring(0, maxLength - prefix.length)}...`;
+                    fontSizeClass = 'text-sm';
+                } else if (displayName.length > fontChangeLength) {
+                    fontSizeClass = 'text-lg';
+                }
+
                 const vendorCard = document.createElement('div');
                 vendorCard.className = 'bg-white rounded-3xl shadow-lg p-6 flex flex-col items-center justify-center transition-transform duration-300 hover:scale-105 hover:shadow-xl';
                 vendorCard.innerHTML = `
                     <div class="w-24 h-24 mb-4 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
                         <img src="${vendor.logoUrl || 'https://placehold.co/96x96/60a5fa/1f2937?text=VEMOS'}" alt="${vendor.name} Icon" class="rounded-full w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/96x96/60a5fa/1f2937?text=VEMOS';">
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900">${vendor.name}</h3>
+                    <h3 class="text-center font-semibold text-gray-900 ${fontSizeClass}">${displayName}</h3>
                     <p class="text-xs text-gray-500 mt-1">Dibuat pada: ${new Date(vendor.createdAt).toLocaleDateString()}</p>
                     ${vendor.updatedAt ? `<p class="text-xs text-gray-500">Diupdate pada: ${new Date(vendor.updatedAt).toLocaleDateString()}</p>` : ''}
                     <p class="text-xs text-gray-500">Prioritas: <span class="font-medium text-black">${vendor.priority}</span></p>
@@ -282,6 +329,7 @@
         vendorForm.reset();
         vendorIdInput.value = '';
         fileSelectedName.textContent = 'Tidak ada file yang dipilih';
+        companyFormContainer.classList.add('hidden');
         showPage('addVendor');
     });
 
@@ -289,7 +337,10 @@
     vendorForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const vendorData = {
-            name: vendorForm.vendorName.value,
+            companyType: companyTypeDropdown.value,
+            companyForm: companyFormDropdown.value,
+            // Convert the vendor name to uppercase before saving
+            name: vendorForm.vendorName.value.toUpperCase(),
             logoUrl: 'https://placehold.co/96x96/60a5fa/1f2937?text=VEMOS',
             priority: 'High', 
             unit: 'Unit A', 
@@ -311,6 +362,23 @@
         }
     });
 
+    // Handle dynamic dropdowns for company form
+    companyTypeDropdown.addEventListener('change', (e) => {
+        const selectedType = e.target.value;
+        companyFormDropdown.innerHTML = '';
+        if (selectedType && companyForms[selectedType]) {
+            companyFormContainer.classList.remove('hidden');
+            companyForms[selectedType].forEach(form => {
+                const option = document.createElement('option');
+                option.value = form;
+                option.textContent = form;
+                companyFormDropdown.appendChild(option);
+            });
+        } else {
+            companyFormContainer.classList.add('hidden');
+        }
+    });
+
     // Cancel button
     document.getElementById('cancelButton').addEventListener('click', () => {
         showPage('dashboard');
@@ -327,7 +395,15 @@
             if (vendor) {
                 vendorIdInput.value = vendor.id;
                 vendorForm.vendorName.value = vendor.name;
+                vendorLogoFile.value = '';
                 fileSelectedName.textContent = 'Tidak ada file yang dipilih';
+                
+                // Populate company type and form for editing
+                companyTypeDropdown.value = vendor.companyType;
+                const changeEvent = new Event('change');
+                companyTypeDropdown.dispatchEvent(changeEvent);
+                companyFormDropdown.value = vendor.companyForm;
+
                 showPage('addVendor');
             }
         }

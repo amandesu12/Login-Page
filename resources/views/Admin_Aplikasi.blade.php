@@ -85,7 +85,9 @@
                                     <i class="fas fa-sort text-xs"></i>
                                 </div>
                             </th>
-                            <th scope="col" class="px-6 py-4"></th>
+                            <th scope="col" class="px-6 py-4 text-left text-sm font-semibold text-gray-500 uppercase tracking-wider">
+                                Aksi
+                            </th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200" id="tableBody">
