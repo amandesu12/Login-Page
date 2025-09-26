@@ -86,7 +86,7 @@
             }
         }
         .modal {
-            display: none;
+            display: none; /* Tetap tersembunyi secara default */
             position: fixed;
             z-index: 20;
             left: 0;
@@ -96,8 +96,9 @@
             overflow: auto;
             background-color: rgb(0,0,0);
             background-color: rgba(0,0,0,0.4);
-            justify-content: center;
-            align-items: center;
+            /* Centering properties are kept in CSS so they apply when display is set to 'flex' in JS */
+            justify-content: center; 
+            align-items: center; 
         }
         .modal-content {
             background-color: #fefefe;
@@ -183,8 +184,8 @@
                         </div>
 
                         <div>
-                            <label for="description" class="block text-gray-700 font-semibold mb-2">Deskripsi Laporan dan Kegiatan</label>
-                            <textarea id="description" rows="4" class="w-full p-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none transition-all" placeholder="Jelaskan Alasan Pengajuan Cuti Anda"></textarea>
+                            <label for="description" class="block text-gray-700 font-semibold mb-2">Deskripsi Laporan dan Kegiatan (Opsional)</label>
+                            <textarea id="description" rows="4" class="w-full p-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none transition-all" placeholder="Jelaskan Alasan Pengajuan Cuti Anda (jika perlu)"></textarea>
                         </div>
 
                         <div id="validationMessage" class="mt-4 p-3 text-sm rounded-lg hidden"></div>
@@ -257,12 +258,12 @@
                 </div>
 
             </div>
-
+            
         </div>
     </div>
 
     <!-- The Modal -->
-    <div id="successModal" class="modal flex justify-center items-center">
+    <div id="successModal" class="modal">
         <div class="modal-content">
             <div class="flex flex-col items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-teal-500 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -360,6 +361,7 @@
                     const formattedDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
                     const dayOfWeek = date.getDay();
 
+                    // Hari Sabtu (6) dan Minggu (0) adalah akhir pekan
                     if (dayOfWeek === 0 || dayOfWeek === 6) {
                         dayElement.classList.add('weekend', 'bg-gray-200');
                         dayElement.classList.remove('hover:bg-gray-200');
@@ -455,6 +457,7 @@
                 leaveTypeSelect.value = "";
                 descriptionInput.value = '';
                 formContainer.classList.add('hidden');
+                quotaInfoBox.style.display = 'none'; // Tambahkan reset untuk info kuota
                 updateSelectedDatesBox();
                 renderCalendar(currentMonth, currentYear);
             };
@@ -462,8 +465,7 @@
             submitBtn.addEventListener('click', () => {
                 hideMessage();
                 const selectedLeaveType = leaveTypeSelect.value;
-                const description = descriptionInput.value.trim();
-
+                
                 if (!selectedLeaveType) {
                     showMessage('Silakan pilih jenis cuti terlebih dahulu.', 'error');
                     return;
@@ -474,11 +476,8 @@
                     return;
                 }
 
-                if (quotaCuttingLeaveTypes.includes(selectedLeaveType) && description === '') {
-                    showMessage('Alasan cuti wajib diisi untuk jenis cuti yang memotong kuota.', 'error');
-                    return;
-                }
-
+                // Jika semua validasi dilewati, tampilkan modal
+                // Menggunakan style.display = 'flex' untuk menampilkan modal dan properti centering di CSS .modal akan berlaku.
                 successModal.style.display = 'flex';
             });
             
@@ -514,6 +513,7 @@
                 hideMessage();
             });
 
+            // Initial render
             renderCalendar(currentMonth, currentYear);
             updateCurrentTime();
             setInterval(updateCurrentTime, 1000);
