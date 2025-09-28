@@ -79,3 +79,10 @@ Route::get('/cuti', function () {
 Route::get('/akses', function () {
     return view('Manajemen_Akses'); 
 });
+
+Route::get('/dashboardproject', function () {
+    return view('dashboardproject'); 
+});
+Route::get('/dashboarduser', function () {
+    return view('dashboarduser'); 
+});
